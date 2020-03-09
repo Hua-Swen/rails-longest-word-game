@@ -1,0 +1,19 @@
+<h1>New game</h1>
+
+<ul class="list-inline">
+<% @letters.each do |letter| %>
+ <li><%= letter %></li>
+<% end %>
+</ul>
+
+<p>What is the longest word you can find?</p>
+<form action="/score" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="text" name="answer">
+  <input id="letters" name="letters" type="hidden" value="<%= @letters_string %>" />
+  <input id="score" name="score" type="hidden" value="<%= @score %>" />
+  <input type="submit" value="Play">
+</form>
+
+<p>Current score: <%= @score %></p>
+<%= link_to "Refresh letters", new_path %>
